@@ -1,0 +1,6 @@
+{
+  "name": "Expense tracker app",
+  "short_name": "Expense",
+  "start_url": "./",
+  "theme_color": "#ffffff"
+}

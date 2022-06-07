@@ -1,2 +1,3 @@
-- database: postgres
+- front-end: vanilla js for now, might explore vue.js
+- database: mysql / postgres
 - backend: go
