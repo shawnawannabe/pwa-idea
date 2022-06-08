@@ -1,6 +1,15 @@
 {
   "name": "Expense tracker app",
   "short_name": "Expense",
-  "start_url": "./",
-  "theme_color": "#ffffff"
+  "start_url": "./?utm_source=pwa",
+  "theme_color": "#6883ba",
+  "scope": "./",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "icons/wallet-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
 }

@@ -2,3 +2,6 @@
 - front-end: vanilla js for now, might explore vue.js
 - database: mysql / postgres
 - backend: go
+
+- icon: flaticon.com
+- color palettes: coolors.co
