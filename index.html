@@ -4,13 +4,15 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- "viewport-fit=cover" added to enable ios content render at the left and right of the screen -->
+  <meta name="viewport" content="width=device-width,viewport-fit=cover">
 
-  <!-- link to link manifest file -->
+  <link rel="stylesheet" href="styles.css">
+  <!-- link to link manifest file, no manifest = no pwa-->
   <link rel="manifest" href="app.webmanifest">
-  <!-- link for icon for apple -->
+  <!-- link for icon for apple, or else the icon would be a screenshot of the webpage-->
   <link rel="apple-touch-icon" href="icons/wallet-512.png">
-
+  <script src="app.js"></script>
   <title>PWA</title>
 </head>
 
