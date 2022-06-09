@@ -17,5 +17,6 @@
       "type": "image/png",
       "purpose": "maskable"
     }
-  ]
+  ],
+  "description": "An expense tracker app prototype"
 }
