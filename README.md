@@ -10,7 +10,7 @@
   - source code reference: [this repo](https://github.com/firtman/frontendmasters-pwa)
 <br/><br/>
 - components / concept behind pwa:
-  - manifest: the "heart" of the app [app.manifest](/app.webmanifest)
+  - manifest: the "heart" of the app [app.webmanifest](/app.webmanifest)
   - service-worker: 
     - a js file that has its own thread 
     - act as a cache/ web server on client-side
