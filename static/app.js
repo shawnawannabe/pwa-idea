@@ -8,7 +8,29 @@ document.addEventListener("DOMContentLoaded", event => {
     renderNotes();
  
     document.querySelector("form").addEventListener("submit", event => {
+        
+
+
+        const formData = new FormData();
+        console.log(formData);
+        // console.log("note:",note);
+        fetch('http://localhost:8080/form', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            response.json()
+            console.log(response.json())
+        })
+        .then(result => {
+            console.log('Success:', result);
+        })
+        .catch(error => {
+            console.log("Error:", error);
+        })
         event.preventDefault();
+
+
         const note = document.querySelector("textarea").value;
         if (note.length==0) {
             alert("You didn't input any content");
