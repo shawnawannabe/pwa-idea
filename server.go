@@ -9,6 +9,18 @@ import (
 	"github.com/joho/godotenv"
 )
 
+type Petrol struct {
+	ID     string `json:"id"`
+	Amount string `json:"amount"`
+}
+
+var petrols []Petrol
+
+// func getPetrol(w http.ResponseWriter, r *http.Request) {
+// 	w.Header().Set("Content-Type", "application/json")
+// 	json.NewEncoder(w).Encode(petrols)
+// }
+
 func formHandler(w http.ResponseWriter, r *http.Request) {
 
 	if err := r.ParseForm(); err != nil {
@@ -25,6 +37,9 @@ func formHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	//hardcode for now
+	petrols = append(petrols, Petrol{ID: "1", Amount: "60L"})
+
 	err := godotenv.Load()
 	if err != nil {
 		fmt.Println("Failed to load .env")
