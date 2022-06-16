@@ -1,11 +1,13 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
 	"os"
 
+	"github.com/gorilla/mux"
 	"github.com/joho/godotenv"
 )
 
@@ -16,10 +18,10 @@ type Petrol struct {
 
 var petrols []Petrol
 
-// func getPetrol(w http.ResponseWriter, r *http.Request) {
-// 	w.Header().Set("Content-Type", "application/json")
-// 	json.NewEncoder(w).Encode(petrols)
-// }
+func getPetrol(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(petrols)
+}
 
 func formHandler(w http.ResponseWriter, r *http.Request) {
 
@@ -49,5 +51,9 @@ func main() {
 	fileServer := http.FileServer((http.Dir(os.Getenv("STATIC_DIR"))))
 	http.Handle("/", fileServer)
 	http.HandleFunc("/form", formHandler)
-	log.Fatal(http.ListenAndServe(":8080", nil))
+
+	//router
+	router := mux.NewRouter()
+	router.HandleFunc("/form/petrol", getPetrol).Methods("Get")
+	log.Fatal(http.ListenAndServe(":8080", router))
 }
