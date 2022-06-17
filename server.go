@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strconv"
 
 	"github.com/gorilla/mux"
 	"github.com/joho/godotenv"
@@ -21,6 +22,19 @@ var petrols []Petrol
 func getPetrol(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(petrols)
+}
+
+func createPetrol(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	var newPetrol Petrol
+	json.NewDecoder(r.Body).Decode(&newPetrol)
+	newPetrol.ID = strconv.Itoa(len(petrols) + 1)
+
+	petrols = append(petrols, newPetrol)
+
+	json.NewEncoder(w).Encode(newPetrol)
+
 }
 
 func formHandler(w http.ResponseWriter, r *http.Request) {
@@ -55,5 +69,6 @@ func main() {
 	//router
 	router := mux.NewRouter()
 	router.HandleFunc("/form/petrol", getPetrol).Methods("Get")
+	router.HandleFunc("/form/petrol", createPetrol).Methods("Post")
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
