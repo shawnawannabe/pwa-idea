@@ -37,6 +37,22 @@ func createPetrol(w http.ResponseWriter, r *http.Request) {
 
 }
 
+func updatePetrol(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	params := mux.Vars(r)
+	for i, item := range petrols {
+		if item.ID == params["id"] {
+			petrols = append(petrols[:i], petrols[i+1:]...)
+			var newPetrol Petrol
+			json.NewDecoder(r.Body).Decode(&newPetrol)
+			newPetrol.ID = params["id"]
+			petrols = append(petrols, newPetrol)
+			json.NewEncoder(w).Encode(newPetrol)
+			return
+		}
+	}
+}
+
 func formHandler(w http.ResponseWriter, r *http.Request) {
 
 	if err := r.ParseForm(); err != nil {
@@ -70,5 +86,6 @@ func main() {
 	router := mux.NewRouter()
 	router.HandleFunc("/form/petrol", getPetrol).Methods("Get")
 	router.HandleFunc("/form/petrol", createPetrol).Methods("Post")
+	router.HandleFunc("/form/petrol", updatePetrol).Methods("Post")
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
